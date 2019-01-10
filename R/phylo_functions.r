@@ -51,7 +51,7 @@ tip.order <- function(phylo){
 #' @examples
 #' None
 
-reorder.tips <- function(phylo){
+rectify.tip.order <- function(phylo){
     reord <- phylo
     reord$edge[reord$edge[,2]<=Ntip(reord),2] <- 1:Ntip(reord)
     reord$tip.label <- tipOrder(phylo)
