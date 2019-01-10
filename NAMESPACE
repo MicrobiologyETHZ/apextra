@@ -2,5 +2,5 @@
 
 export(as.ultrametric)
 export(draw.phylo)
-export(rectify.tip.order)
-export(tip.order)
+export(reorderTips)
+export(tipOrder)

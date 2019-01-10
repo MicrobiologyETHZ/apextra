@@ -33,7 +33,7 @@ as.ultrametric <- function(phylo){
 #' @examples
 #' None
 
-tip.order <- function(phylo){
+tipOrder <- function(phylo){
     isTip <- phylo$edge[,2] <= Ntip(phylo)
     ord <- phylo$edge[isTip,2]
     return(ord)
@@ -51,7 +51,7 @@ tip.order <- function(phylo){
 #' @examples
 #' None
 
-rectify.tip.order <- function(phylo){
+reorderTips <- function(phylo){
     reord <- phylo
     reord$edge[reord$edge[,2]<=Ntip(reord),2] <- 1:Ntip(reord)
     reord$tip.label <- tipOrder(phylo)
