@@ -2,7 +2,7 @@
 % Please edit documentation in R/phylo_functions.r
 \name{tipOrder}
 \alias{tipOrder}
-\title{Function to determine the 'real' order of tips in a phylo object, which can change when a tree is rerooted}
+\title{Function to determine the 'real' order of tips in a phylo object, which can change when a tree is rerooted.}
 \usage{
 tipOrder(phylo)
 }
@@ -13,7 +13,7 @@ tipOrder(phylo)
 A vector with the tip numbers 1 to N in the order they are in the tree.
 }
 \description{
-Function to determine the 'real' order of tips in a phylo object, which can change when a tree is rerooted
+Function to determine the 'real' order of tips in a phylo object, which can change when a tree is rerooted.
 }
 \details{
 None

@@ -2,9 +2,9 @@
 % Please edit documentation in R/phylo_functions.r
 \name{draw.phylo}
 \alias{draw.phylo}
-\title{Function to draw a phylogram on an existing plot in an arbitrary position with arbitrary scale}
+\title{Function to draw a phylogram on an existing plot in an arbitrary position with arbitrary scale.}
 \usage{
-draw.phylo(x1, y1, x2, y2, phylo, direction = "r",
+draw.phylo(x1, y1, x2, y2, phylo, direction = "r", mirror = F,
   show.tip.label = FALSE, label.offset = 0, tip.color = "black",
   align.tip.label = FALSE)
 }
@@ -13,7 +13,9 @@ draw.phylo(x1, y1, x2, y2, phylo, direction = "r",
 
 \item{phylo}{An object of class "phylo".}
 
-\item{direction}{A character string specifying the direction in which the phylogram will be drawn; it must be one of "r"ightwards (default), "l"eftwards, "u"pwards or "d"ownwards..}
+\item{direction}{A character string specifying the direction in which the phylogram will be drawn; it must be one of "r"ightwards (default), "l"eftwards, "u"pwards or "d"ownwards.}
+
+\item{mirror}{A logical indicating whether the phylogeny should be plotted in reverse order, i.e.: mirrored.}
 
 \item{show.tip.label}{A logical indicating whether tip labels should be drawn; defaults to FALSE. The labels will be placed outside of the coordinate rectangle provided.}
 
@@ -27,7 +29,7 @@ draw.phylo(x1, y1, x2, y2, phylo, direction = "r",
 None
 }
 \description{
-Function to draw a phylogram on an existing plot in an arbitrary position with arbitrary scale
+Function to draw a phylogram on an existing plot in an arbitrary position with arbitrary scale.
 }
 \details{
 The phylogram is laid out such that the outermost branches lie on the edges of the coordinate rectangle, with the root and furthest tip on the other edges.

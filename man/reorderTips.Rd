@@ -2,7 +2,7 @@
 % Please edit documentation in R/phylo_functions.r
 \name{reorderTips}
 \alias{reorderTips}
-\title{Function to reorder the tip labels of a tree to match the order in which they are plotted, which can change when a tree is rerooted}
+\title{Function to reorder the tip labels of a tree to match the order in which they are plotted, which can change when a tree is rerooted.}
 \usage{
 reorderTips(phylo)
 }
@@ -13,7 +13,7 @@ reorderTips(phylo)
 An object of class "phylo"
 }
 \description{
-Function to reorder the tip labels of a tree to match the order in which they are plotted, which can change when a tree is rerooted
+Function to reorder the tip labels of a tree to match the order in which they are plotted, which can change when a tree is rerooted.
 }
 \details{
 First the internal labels in the edges of the tree are relabelled to appear in ascending order, then the tip labels are reordered to match the correct internal labels.

@@ -1,4 +1,4 @@
-#' Function to extend the terminal branches of a phylo object so that the resulting tree is ultrametric
+#' Function to extend the terminal branches of a phylo object so that the resulting tree is ultrametric.
 #'
 #' @param phylo An object of class "phylo" that is rooted.
 #' @details
@@ -21,7 +21,7 @@ as.ultrametric <- function(phylo){
     return(phylo)
 }
 
-#' Function to determine the 'real' order of tips in a phylo object, which can change when a tree is rerooted
+#' Function to determine the 'real' order of tips in a phylo object, which can change when a tree is rerooted.
 #'
 #' @param phylo An object of class "phylo".
 #' @details
@@ -39,7 +39,7 @@ tipOrder <- function(phylo){
     return(ord)
 }
 
-#' Function to reorder the tip labels of a tree to match the order in which they are plotted, which can change when a tree is rerooted
+#' Function to reorder the tip labels of a tree to match the order in which they are plotted, which can change when a tree is rerooted.
 #'
 #' @param phylo An object of class "phylo".
 #' @details
@@ -54,15 +54,31 @@ tipOrder <- function(phylo){
 reorderTips <- function(phylo){
     reord <- phylo
     reord$edge[reord$edge[,2]<=Ntip(reord),2] <- 1:Ntip(reord)
-    reord$tip.label <- tipOrder(phylo)
+    reord$tip.label <- phylo$tip.label[tipOrder(phylo)]
     return(reord)
 }
 
-#' Function to draw a phylogram on an existing plot in an arbitrary position with arbitrary scale
+#' Function to reverse the structure of a phylogeny for plotting purposes.
+#'
+#' @param phylo An object of class "phylo".
+#' @keywords None
+#' @return An object of class "phylo".
+#' @export
+#' @author Chris Field <fieldc@@ethz.ch>
+#' @examples
+#' None
+
+rev.phylo <- function(phylo){
+    new <- reorderTips(rotateConstr(phylo,rev(phylo$tip.label)))
+    return(new)
+}
+
+#' Function to draw a phylogram on an existing plot in an arbitrary position with arbitrary scale.
 #'
 #' @param x1,y1,x2,y2 Coordinates of the rectangle that will contain the phylogram.
 #' @param phylo An object of class "phylo".
-#' @param direction A character string specifying the direction in which the phylogram will be drawn; it must be one of "r"ightwards (default), "l"eftwards, "u"pwards or "d"ownwards..
+#' @param direction A character string specifying the direction in which the phylogram will be drawn; it must be one of "r"ightwards (default), "l"eftwards, "u"pwards or "d"ownwards.
+#' @param mirror A logical indicating whether the phylogeny should be plotted in reverse order, i.e.: mirrored.
 #' @param show.tip.label A logical indicating whether tip labels should be drawn; defaults to FALSE. The labels will be placed outside of the coordinate rectangle provided.
 #' @param label.offset A numeric giving the distance between the tips and their corresponding labels, defaults to 0.
 #' @param tip.color A single color or vector of colors to be used for the tip labels, defaults to black.
@@ -76,7 +92,10 @@ reorderTips <- function(phylo){
 #' @examples
 #' None
 
-draw.phylo <- function(x1,y1,x2,y2,phylo,direction="r",show.tip.label=FALSE,label.offset=0,tip.color="black",align.tip.label=FALSE){
+draw.phylo <- function(x1,y1,x2,y2,phylo,direction="r",mirror=F,show.tip.label=FALSE,label.offset=0,tip.color="black",align.tip.label=FALSE){
+    if(mirror){
+        phylo <- rev(phylo)
+    }
     if(direction%in%c("r","u")){
         nodex <- node.depth.edgelength(phylo)
         nodey <- node.height(phylo)

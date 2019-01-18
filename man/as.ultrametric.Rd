@@ -2,7 +2,7 @@
 % Please edit documentation in R/phylo_functions.r
 \name{as.ultrametric}
 \alias{as.ultrametric}
-\title{Function to extend the terminal branches of a phylo object so that the resulting tree is ultrametric}
+\title{Function to extend the terminal branches of a phylo object so that the resulting tree is ultrametric.}
 \usage{
 as.ultrametric(phylo)
 }
@@ -13,7 +13,7 @@ as.ultrametric(phylo)
 An object of class "phylo", rooted and ultrametric
 }
 \description{
-Function to extend the terminal branches of a phylo object so that the resulting tree is ultrametric
+Function to extend the terminal branches of a phylo object so that the resulting tree is ultrametric.
 }
 \details{
 The final root-to-tip distance of each tip will be that of the furthest from the root.
