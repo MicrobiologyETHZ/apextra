@@ -164,3 +164,70 @@ draw.phylo <- function(x1,y1,x2,y2,phylo,direction="r",mirror=F,show.tip.label=F
         text(labelx,labely,phylo$tip.label,pos=tpos,offset=label.offset,col=tip.color)
     }
 }
+
+#' Function to find the nodes one level up from a provided set of nodes
+#'
+#' @param phylo An object of class "phylo".
+#' @keywords None
+#' @return An object of class "phylo".
+#' @export
+#' @author Chris Field <fieldc@@ethz.ch>
+#' @examples
+#' None
+
+higherNodes <- function(phylo,nodes){
+    return(unique(phylo$edge[phylo$edge[,2]%in%nodes,1]))
+}
+
+#' Function to find the nodes one down from a provided set of nodes
+#'
+#' @param phylo An object of class "phylo".
+#' @keywords None
+#' @return An object of class "phylo".
+#' @export
+#' @author Chris Field <fieldc@@ethz.ch>
+#' @examples
+#' None
+
+lowerNodes <- function(phylo,nodes){
+        return(unique(phylo$edge[phylo$edge[,1]%in%nodes,2]))
+}
+
+#' Function to find the tips below a provided set of nodes
+#'
+#' @param phylo An object of class "phylo".
+#' @keywords None
+#' @return An object of class "phylo".
+#' @export
+#' @author Chris Field <fieldc@@ethz.ch>
+#' @examples
+#' None
+
+tipsBelow <- function(phylo,nodes){
+    tips <- vector()
+    depth <- max(node.depth(phylo,method=2)[nodes])
+    for(i in 1:depth){
+        tips <- c(tips,lowerNodes(phylo,nodes))
+        nodes = tips
+    }
+    tips <- unique(tips[tips<Ntip(phylo)])
+    return(tips)
+}
+
+#' Function to find the nearest neighbour(s) to a provided set of tips
+#'
+#' @param phylo An object of class "phylo".
+#' @keywords None
+#' @return An object of class "phylo".
+#' @export
+#' @author Chris Field <fieldc@@ethz.ch>
+#' @examples
+#' None
+
+nearestNeighbours <- function(phylo,tips,n=1){
+    dm <- cophenetic(tree)
+    for(i in 1:n){
+        nn <- sapply(tips,function(x) order(dm[x,])[1+1:n])
+    }
+    return(as.vector(nn))
+}
