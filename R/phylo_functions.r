@@ -168,6 +168,7 @@ draw.phylo <- function(x1,y1,x2,y2,phylo,direction="r",mirror=F,show.tip.label=F
 #' Function to find the nodes one level up from a provided set of nodes
 #'
 #' @param phylo An object of class "phylo".
+#' @param nodes A numeric vector indicating the nodes to start from. Tips are also nodes, numbered 1:N.
 #' @keywords None
 #' @return An object of class "phylo".
 #' @export
@@ -182,6 +183,7 @@ higherNodes <- function(phylo,nodes){
 #' Function to find the nodes one down from a provided set of nodes
 #'
 #' @param phylo An object of class "phylo".
+#' @param nodes A numeric vector indicating the nodes to start from.
 #' @keywords None
 #' @return An object of class "phylo".
 #' @export
@@ -196,6 +198,7 @@ lowerNodes <- function(phylo,nodes){
 #' Function to find the tips below a provided set of nodes
 #'
 #' @param phylo An object of class "phylo".
+#' @param nodes A numeric vector indicating the nodes to start from.
 #' @keywords None
 #' @return An object of class "phylo".
 #' @export
@@ -217,6 +220,8 @@ tipsBelow <- function(phylo,nodes){
 #' Function to find the nearest neighbour(s) to a provided set of tips
 #'
 #' @param phylo An object of class "phylo".
+#' @param tips A numeric vector indicating the tips to start from.
+#' @param n A numeric indicating the number of nearest neighbours to return.
 #' @keywords None
 #' @return An object of class "phylo".
 #' @export
@@ -229,5 +234,5 @@ nearestNeighbours <- function(phylo,tips,n=1){
     for(i in 1:n){
         nn <- sapply(tips,function(x) order(dm[x,])[1+1:n])
     }
-    return(as.vector(nn))
+    return(unique(as.vector(nn)))
 }
